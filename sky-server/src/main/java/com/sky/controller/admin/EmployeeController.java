@@ -40,7 +40,7 @@ public class EmployeeController {
      */
     @PostMapping("/login")
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
-        log.info("员工登录了：{}", employeeLoginDTO);
+        log.info("员工登录了吧：{}", employeeLoginDTO);
 
         Employee employee = employeeService.login(employeeLoginDTO);
 
