@@ -11,3 +11,8 @@ sky:
     port: 6379
     password:
     database: 0
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: LTAI5tHtZLfdvGZoPcGmDCRU
+    access-key-secret: pPW6dg9x6SuFANt1M9rPDG7pcTE7jh
+    bucket-name: liaoxinskytakeout
