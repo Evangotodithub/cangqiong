@@ -50,8 +50,6 @@
                 <if test="categoryId != null">
                     and s.category_id = #{categoryId}
                 </if>
-
-
         </where>
 order by s.create_time desc
     </select>
