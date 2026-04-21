@@ -70,9 +70,9 @@ public class DishServiceImpl implements DishService {
                 throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
             }
         }
-        List<Long> setmealIds = setmealDishMapper.getSetmealIdByDishIds(id);
+        List<Long> setmealIds = setmealDishMapper.getSetmealIdByDishIds(ids);
         if(setmealIds != null && setmealIds.size()>0){
-            throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL)
+            throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
         }
         for (Long id : ids) {
             dishMapper.deleteById(id);

@@ -8,6 +8,13 @@
         (#{sd.setmealId},#{sd.dishId},#{sd.name},#{sd.price},#{sd.copies})
     </foreach>
     </insert>
-
+    
+<select id="getSetmealIdByDishIds" resultType="Long">
+    select setmeal_id from setmeal_dish where dish_id in (
+        <foreach collection="ids" item="dishId" open="(" close=")">
+            #{dishId}
+        </foreach>
+        )
+</select>
 
 </mapper>
