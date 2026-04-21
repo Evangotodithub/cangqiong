@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Set;
 
@@ -66,6 +67,16 @@ public class DishController {
         Set keys = redisTemplate.keys("dish_*");
         redisTemplate.delete(keys);
         return Result.success();
+
+    }
+    @PostMapping("/status/{status}")
+    public Result setStatus(@PathVariable Integer status,@RequestParam() Long id){
+        log.info("shezhizhuangtai:{}",id);
+        dishService.setStatus(status,id);
+        Set keys = redisTemplate.keys("dish_*");
+        redisTemplate.delete(keys);
+        return Result.success();
+
 
     }
 
