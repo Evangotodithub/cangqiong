@@ -1,5 +1,6 @@
 package com.sky.mapper;
 
+import com.sky.dto.SetmealDTO;
 import com.sky.entity.Setmeal;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -17,4 +18,7 @@ public interface SetmealMapper {
 
 
     void update(Setmeal setmeal);
+
+
+    void insert(Setmeal setmeal);
 }
