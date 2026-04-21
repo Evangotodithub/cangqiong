@@ -38,5 +38,21 @@
         where id = #{id}
 
     </update>
+    <select id="list" resultType="Dish">
+select * from dish
+        <where>
+<if test="name != null">
+    name like concat(%,'#{name}',%),
+</if>
+         <if test="category_id != null">
+             category_id = #{categoryId},
+         </if>
+             <if test="status != null">
+                 satus =#{status}
+             </if>
+</where>
+order by create_time desc
+
+    </select>
 
 </mapper>
