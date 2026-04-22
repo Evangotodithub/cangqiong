@@ -55,4 +55,10 @@ public class SetmealController {
 
 
     }
+    @PostMapping("/status/{status}")
+    @CacheEvict(cacheNames = "setmealCache",allEntries = true)
+    public Result startOrStop(@PathVariable Integer status,@RequestParam Long id){
+        setmealService.startOrStop(status,id);
+        return Result.success();
+    }
 }
