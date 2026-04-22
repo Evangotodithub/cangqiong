@@ -46,4 +46,13 @@ public class SetmealController {
         SetmealVO setmealVO = setmealService.getByIdWithDish(id);
         return Result.success(setmealVO);
     }
+
+    @PutMapping
+    @CacheEvict(cacheNames = "setmealCache",allEntries = true)
+    public Result update(@RequestBody SetmealDTO setmealDTO){
+        setmealService.update(setmealDTO);
+        return Result.success();
+
+
+    }
 }
