@@ -9,6 +9,7 @@ import com.sky.mapper.OrderDetailMapper;
 import com.sky.mapper.OrderMapper;
 import com.sky.result.PageResult;
 import com.sky.service.OrderService;
+import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.OrderVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +33,29 @@ public class OrderServiceImpl implements OrderService {
         Page<Orders> page = orderMapper.pageQuery(ordersPageQueryDTO);
         List<OrderVO> orderVOList = getOrderVOList(page);
         return new PageResult(page.getTotal(),orderVOList);
+    }
+
+    @Override
+    public OrderStatisticsVO statistics() {
+        Integer toBeConfirmed = orderMapper.countStatus(Orders.TO_BE_CONFIRMED);
+        Integer confirmed = orderMapper.countStatus(Orders.CONFIRMED);
+        Integer deliveryInProgress = orderMapper.countStatus(Orders.DELIVERY_IN_PROGRESS);
+
+        OrderStatisticsVO orderStatisticsVO = new OrderStatisticsVO();
+        orderStatisticsVO.setToBeConfirmed(toBeConfirmed);
+        orderStatisticsVO.setConfirmed(confirmed);
+        orderStatisticsVO.setDeliveryInProgress(deliveryInProgress);
+        return orderStatisticsVO;
+    }
+
+    @Override
+    public OrderVO details(Long id) {
+        Orders orders = orderMapper.getByiId(id);
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(id);
+        OrderVO orderVO = new OrderVO();
+        BeanUtils.copyProperties(orders,orderVO);
+        orderVO.setOrderDetailList(orderDetailList);
+        return orderVO;
     }
 
     private List<OrderVO> getOrderVOList(Page<Orders> page) {
