@@ -22,4 +22,6 @@ public interface OrderService {
     void cancel(OrdersCancelDTO ordersCancelDTO);
 
     void delivery(Long id);
+
+    void complete(Long id);
 }
