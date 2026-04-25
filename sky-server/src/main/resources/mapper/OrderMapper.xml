@@ -62,10 +62,10 @@
             <if test="status != null">
                 and status = #{status}
             </if>
-            <if test="beginTime != null">
+            <if test="begin != null">
                 and order_time &gt;= #{begin}
             </if>
-            <if test="endTime != null">
+            <if test="end != null">
                 and order_time &lt;= #{end}
             </if>
         </where>
