@@ -53,4 +53,9 @@ public class OrderController {
         orderService.cancel(ordersCancelDTO);
         return Result.success();
     }
+    @PutMapping("/delivery/{id}")
+    public Result delivery(@PathVariable Long id){
+        orderService.delivery(id);
+        return Result.success();
+    }
 }
