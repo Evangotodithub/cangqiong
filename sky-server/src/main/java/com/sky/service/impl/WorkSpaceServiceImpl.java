@@ -7,8 +7,10 @@ import com.sky.mapper.SetmealMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.WorkSpaceService;
 import com.sky.vo.BusinessDataVO;
+import com.sky.vo.OrderOverViewVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -53,6 +55,35 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
                 .orderCompletionRate(orderCompletionRate)
                 .unitPrice(unitPrice)
                 .newUsers(newUsers)
+                .build();
+    }
+
+    @Override
+    public OrderOverViewVO getOrderOverView() {
+        Map map = new HashMap();
+        map.put("begin",LocalDateTime.now().with(LocalDateTime.MIN));
+
+        map.put("status",Orders.TO_BE_CONFIRMED);
+        Integer waitingOrders = orderMapper.countByMap(map);
+
+        map.put("status",Orders.CONFIRMED);
+        Integer deliveredOrders = orderMapper.countByMap(map);
+
+        map.put("status",Orders.COMPLETED);
+        Integer completedOrders = orderMapper.countByMap(map);
+
+        map.put("status", Orders.CANCELLED);
+        Integer cancelledOrders = orderMapper.countByMap(map);
+
+        map.put("status", null);
+        Integer allOrders = orderMapper.countByMap(map);
+
+        return OrderOverViewVO.builder()
+                .waitingOrders(waitingOrders)
+                .deliveredOrders(deliveredOrders)
+                .completedOrders(completedOrders)
+                .cancelledOrders(cancelledOrders)
+                .allOrders(allOrders)
                 .build();
     }
 }
