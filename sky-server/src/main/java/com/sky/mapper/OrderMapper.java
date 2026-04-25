@@ -6,6 +6,8 @@ import com.sky.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Map;
+
 @Mapper
 
 public interface OrderMapper {
@@ -18,4 +20,8 @@ public interface OrderMapper {
     Orders getByiId(Long id);
 
     void update(Orders orders);
+
+    Integer countByMap(Map map);
+
+    Double sumByMap(Map map);
 }
