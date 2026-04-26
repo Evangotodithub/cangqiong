@@ -107,6 +107,16 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
 
     @Override
     public SetmealOverViewVO geSetmealOverView() {
-        return null;
+        Map map = new HashMap();
+        map.put("status", StatusConstant.ENABLE);
+        Integer sold = setmealMapper.countByMap(map);
+
+        map.put("status", StatusConstant.DISABLE);
+        Integer discontinued = setmealMapper.countByMap(map);
+
+        return SetmealOverViewVO.builder()
+                .sold(sold)
+                .discontinued(discontinued)
+                .build();
     }
 }
