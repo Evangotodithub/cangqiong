@@ -10,6 +10,7 @@ import com.sky.service.WorkSpaceService;
 import com.sky.vo.BusinessDataVO;
 import com.sky.vo.DishOverViewVO;
 import com.sky.vo.OrderOverViewVO;
+import com.sky.vo.SetmealOverViewVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -102,5 +103,10 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
                 .sold(sold)
                 .discontinued(discontinued)
                 .build();
+    }
+
+    @Override
+    public SetmealOverViewVO geSetmealOverView() {
+        return null;
     }
 }

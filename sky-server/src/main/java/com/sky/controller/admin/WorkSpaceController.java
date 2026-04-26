@@ -5,6 +5,7 @@ import com.sky.service.WorkSpaceService;
 import com.sky.vo.BusinessDataVO;
 import com.sky.vo.DishOverViewVO;
 import com.sky.vo.OrderOverViewVO;
+import com.sky.vo.SetmealOverViewVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +34,14 @@ public class WorkSpaceController {
         OrderOverViewVO orderOverViewVO = workSpaceService.getOrderOverView();
         return Result.success(orderOverViewVO);
     }
+    @GetMapping("/dishOverView")
     public Result<DishOverViewVO> dishOverView(){
         DishOverViewVO dishOverViewVO = workSpaceService.getDishOverView();
         return Result.success(dishOverViewVO);
+    }
+
+    public Result<SetmealOverViewVO> setmealOverView(){
+        SetmealOverViewVO setmealOverViewVO = workSpaceService.geSetmealOverView();
+        return Result.success(setmealOverViewVO);
     }
 }
