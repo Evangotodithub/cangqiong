@@ -3,6 +3,7 @@ package com.sky.controller.admin;
 import com.sky.result.Result;
 import com.sky.service.WorkSpaceService;
 import com.sky.vo.BusinessDataVO;
+import com.sky.vo.DishOverViewVO;
 import com.sky.vo.OrderOverViewVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,9 @@ public class WorkSpaceController {
     public Result<OrderOverViewVO> orderOverView(){
         OrderOverViewVO orderOverViewVO = workSpaceService.getOrderOverView();
         return Result.success(orderOverViewVO);
+    }
+    public Result<DishOverViewVO> dishOverView(){
+        DishOverViewVO dishOverViewVO = workSpaceService.getDishOverView();
+        return Result.success(dishOverViewVO);
     }
 }
