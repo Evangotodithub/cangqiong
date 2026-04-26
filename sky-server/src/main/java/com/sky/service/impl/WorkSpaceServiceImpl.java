@@ -1,5 +1,6 @@
 package com.sky.service.impl;
 
+import com.sky.constant.StatusConstant;
 import com.sky.entity.Orders;
 import com.sky.mapper.DishMapper;
 import com.sky.mapper.OrderMapper;
@@ -90,6 +91,16 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
 
     @Override
     public DishOverViewVO getDishOverView() {
-        return null;
+        Map map = new HashMap<>();
+        map.put("status", StatusConstant.ENABLE);
+        Integer sold = dishMapper.countByMap(map);
+
+        map.put("status",StatusConstant.DISABLE);
+        Integer discontinued = dishMapper.countByMap(map);
+
+        return DishOverViewVO.builder()
+                .sold(sold)
+                .discontinued(discontinued)
+                .build();
     }
 }
